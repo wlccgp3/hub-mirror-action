@@ -17,11 +17,9 @@ jobs:
       with:
         src: github/khadas
         dst: gitee/spectre_khadas
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
+        dst_key: ${{ secrets.GIHUB_PUBLIC_KEY }}
+        dst_token: ${{ secrets.GITEE_PRIVATE_KEY }}
         account_type: org
-        # Only sync normal repo
-        black_list: 'test'
-#         white_list: 'normal,test,empty'
         force_update: true
         debug: true
+        clone_style: "ssh"
