@@ -3,6 +3,8 @@ on:
   push:
   pull_request_target:
     branches: [master]
+  schedule:
+    - cron: '0 */7 * * *'
 
 name: khadas-org-mirror
 jobs:
@@ -23,4 +25,3 @@ jobs:
         force_update: true
         debug: true
         clone_style: "ssh"
-        timeout: '10h'
