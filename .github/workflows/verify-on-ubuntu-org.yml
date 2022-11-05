@@ -13,13 +13,13 @@ jobs:
     - name: Mirror Github to Gitee
       uses: ./.
       with:
-        src: github/hub-mirror-action
-        dst: gitee/hub-mirror-action
+        src: github/khadas
+        dst: gitee/spectre_khadas
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
         account_type: org
         # Only sync normal repo
         black_list: 'test'
-        white_list: 'normal,test,empty'
+#         white_list: 'normal,test,empty'
         force_update: true
         debug: true
