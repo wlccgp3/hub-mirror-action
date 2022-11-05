@@ -3,14 +3,12 @@ on:
   push:
   pull_request_target:
     branches: [master]
-  schedule:
-    - cron: '0 */7 * * *'
 
 name: khadas-org-mirror
 jobs:
   run:
     name: Run
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout source code
       uses: actions/checkout@v1
