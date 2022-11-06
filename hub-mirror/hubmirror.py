@@ -84,6 +84,7 @@ class HubMirror(object):
                     mirror.download()
                     mirror.create()
                     mirror.push()
+                    mirror.clean()
                     success += 1
                 except Exception as e:
                     print(e)
