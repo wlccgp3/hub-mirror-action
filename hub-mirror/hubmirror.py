@@ -67,7 +67,7 @@ class HubMirror(object):
 
         force_update = self.args.force_update
         if force_update is False:
-            self.black_list.extend(hub.dst_dynamic_list())
+            src_repos = list(set(src_repos) - set(hub.dst_dynamic_list()) )
 
         total, success, skip = len(src_repos), 0, 0
         failed_list = []
