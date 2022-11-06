@@ -1,17 +1,20 @@
+import os
 import re
 import shutil
-import os
+from pathlib import Path
 
 import git
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from utils import cov2sec
 
+CUR_DIR = Path(__file__).resolve().parent
+
 
 class Mirror(object):
     def __init__(
-        self, hub, src_name, dst_name,
-        cache='.', timeout='0', force_update=False, force_clean=False
+            self, hub, src_name, dst_name,
+            cache='.', timeout='0', force_update=False, force_clean=False
     ):
         self.hub = hub
         self.src_name = src_name
@@ -30,12 +33,12 @@ class Mirror(object):
     def _clone(self):
         # TODO: process empty repo
         print("Starting git clone " + self.src_url)
-        mygit = git.cmd.Git(os.getcwd())
+        mygit = git.cmd.Git(CUR_DIR)
         mygit.clone(
             git.cmd.Git.polish_url(self.src_url), self.repo_path,
             kill_after_timeout=self.timeout
         )
-        print("Clone completed: %s" % os.getcwd() + self.repo_path)
+        print("Clone completed: %s" % self.repo_path)
 
     @retry(wait=wait_exponential(), reraise=True, stop=stop_after_attempt(3))
     def _update(self, local_repo):

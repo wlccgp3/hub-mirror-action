@@ -67,6 +67,7 @@ class HubMirror(object):
 
         total, success, skip = len(src_repos), 0, 0
         failed_list = []
+        success_list = []
         for src_repo in src_repos:
             # Set dst_repo to src_repo mapping or src_repo directly
             dst_repo = self.mappings.get(src_repo, src_repo)
@@ -85,6 +86,8 @@ class HubMirror(object):
                     mirror.create()
                     mirror.push()
                     mirror.clean()
+                    success_list.append(src_repo)
+                    print(','.join(success_list))
                     success += 1
                 except Exception as e:
                     print(e)
