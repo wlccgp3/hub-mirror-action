@@ -11,7 +11,7 @@ from utils import cov2sec
 class Mirror(object):
     def __init__(
         self, hub, src_name, dst_name,
-        cache='.', timeout='0', force_update=False
+        cache='.', timeout='0', force_update=False, force_clean=False
     ):
         self.hub = hub
         self.src_name = src_name
@@ -24,6 +24,7 @@ class Mirror(object):
         else:
             self.timeout = 0
         self.force_update = force_update
+        self.force_clean = force_clean
 
     @retry(wait=wait_exponential(), reraise=True, stop=stop_after_attempt(3))
     def _clone(self):
@@ -94,3 +95,8 @@ class Mirror(object):
             print("(3/3) Force pushing...")
             cmd = ['-f'] + cmd
             local_repo.git.push(*cmd, kill_after_timeout=self.timeout)
+
+    def clean(self):
+        if self.force_clean:
+            print("Force Clean...")
+            shutil.rmtree(self.repo_path, True)

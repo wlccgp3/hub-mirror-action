@@ -42,6 +42,9 @@ inputs:
     description: "Only mirror repo in the static list, but don't get from repo api (the white/black list is still available). like 'repo1,repo2,repo3'"
     default: ''
   force_update:
+    description: "Force clean source repo finally"
+    default: false
+  force_clean:
     description: "Force to update the destination repo, use '-f' flag do 'git push'"
     default: false
   debug:
@@ -70,6 +73,7 @@ runs:
     - ${{ inputs.white_list }}
     - ${{ inputs.static_list }}
     - ${{ inputs.force_update}}
+    - ${{ inputs.force_clean}}
     - ${{ inputs.debug}}
     - ${{ inputs.timeout}}
     - ${{ inputs.mappings}}
