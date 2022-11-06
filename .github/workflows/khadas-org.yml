@@ -19,6 +19,7 @@ jobs:
         dst: gitee/spectre_khadas
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: 'android_external_rootdev'
         account_type: org
         force_update: true
         force_clean: true
