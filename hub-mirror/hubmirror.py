@@ -40,11 +40,11 @@ class HubMirror(object):
 
     def test_black_white_list(self, repo):
         if repo in self.black_list:
-            print("Skip, %s in black list: %s" % (repo, self.black_list))
+            print("Skip, %s in black list" % (repo,))
             return False
 
         if self.white_list and repo not in self.white_list:
-            print("Skip, %s not in white list: %s" % (repo, self.white_list))
+            print("Skip, %s not in white list" % (repo,))
             return False
 
         return True
