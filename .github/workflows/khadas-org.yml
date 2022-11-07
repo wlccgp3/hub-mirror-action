@@ -1,8 +1,6 @@
 on:
   workflow_dispatch:
   push:
-    paths:
-      - '.github/workflows/khadas-org.yml'
 
 name: khadas-org-mirror
 jobs:
