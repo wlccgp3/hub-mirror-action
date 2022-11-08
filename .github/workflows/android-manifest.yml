@@ -1,0 +1,28 @@
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/android-manifest.yml'
+
+name: android-manifest
+jobs:
+  run:
+    name: android-manifest
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v1
+    - name: Mirror Github to Gitee
+      uses: ./.
+      with:
+        src: github/khadas
+        dst: gitee/spectre_khadas
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        static_list: "android_manifest"
+        clone_style: ssh
+        account_type: org
+        force_update: true
+        force_clean: true
+        timeout: '2h'
+        debug: true
